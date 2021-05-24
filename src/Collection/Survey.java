@@ -1,3 +1,4 @@
+package Collection;
 
 //binary tree
 class Node {
