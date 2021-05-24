@@ -1,3 +1,5 @@
+package Collection;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -27,6 +29,9 @@ public class Main {
                 System.out.println(continent[i].allPlaces[j].name);
             }
         }
+
+        Customer c1=new Customer();
+        c1.acceptBucket();
         // n is the number of nodes i.e. V
         /*int n = 4;
 

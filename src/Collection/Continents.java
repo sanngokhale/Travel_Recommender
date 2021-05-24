@@ -1,12 +1,10 @@
-import java.util.Map;
+package Collection;
 
-public class Location {
+class Location {
     public String name;
-    public Map<Location,Location> map;
-
 }
 
-class Continents{
+public class Continents{
     public String name;
     public Location[] allPlaces;
 
