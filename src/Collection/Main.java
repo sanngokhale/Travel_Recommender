@@ -27,6 +27,7 @@ public class Main {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.println("Hello I did it!!");
+                System.out.println("TSP");
                 System.out.println(continent[i].allPlaces[j].name);
             }
         }
