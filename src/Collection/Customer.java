@@ -71,13 +71,6 @@ public class Customer {
             }
         }
 
-       /* BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
-        while ((row = csvReader.readLine()) != null) {
-            String[] data = row.split(",");
-            // do something with the data
-        }
-        csvReader.close();*/
-
 
         String line = "";
         String splitBy = ",";
@@ -106,6 +99,35 @@ public class Customer {
                 System.out.println();
             }
         }
+        /*
+        String line = "";
+        String splitBy = ",";
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader("src\\Europe.csv"));
+            double [][] graph=new double[choices.size()][choices.size()];
+            while ((line = br.readLine()) != null)   //returns a Boolean value
+            {
+                String[] country = line.split(splitBy);    // use comma as separator
+
+                for(int m=0;m<choices.size();m++){
+                    if(bucketList[m].name.equals(country[0])){
+                        System.out.println(country[0]+" Added");
+                        graph[m]=new double[choices.size()];
+                        for(int j=0;j<choices.size();j++){
+                            graph[m][j]=Double.parseDouble(country[choices.get(j)]);
+                        }
+                    }
+                }
+            }
+            for(int x=0;x<graph.length;x++){
+                for(int y =0 ;y<graph[x].length;y++){
+                    System.out.print("***"+graph[x][y]+"   ");
+                }
+                System.out.println();
+            }
+        }*/
+
         catch (IOException e)
         {
             e.printStackTrace();
@@ -125,6 +147,7 @@ public class Customer {
         if (count == n && graph[currPos][0] > 0)
         {
             ans = Math.min(ans, cost + graph[currPos][0]);
+            System.out.println("current pos: "+currPos);
             return ans;
         }
 
@@ -139,7 +162,6 @@ public class Customer {
 
                 // Mark as visited
                 v[i] = true;
-                System.out.println("vertex: "+i+"***  cost: "+cost);
                 ans = tsp(graph, v, i, n, count + 1, cost + graph[currPos][i], ans);
 
                 // Mark ith node as unvisited

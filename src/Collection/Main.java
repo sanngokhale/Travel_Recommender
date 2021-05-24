@@ -34,13 +34,16 @@ public class Main {
 
         Customer c1=new Customer();
         c1.acceptBucket();
+
+
+
         // n is the number of nodes i.e. V
-        /*int n = 4;
+        int n = 4;
 
         int[][] graph = {{0, 10, 15, 20},
-                {10, 0, 35, 25},
-                {15, 35, 0, 30},
-                {20, 25, 30, 0}};
+                        {10, 0, 35, 25},
+                        {15, 35, 0, 30},
+                        {20, 25, 30, 0}};
 
         // Boolean array to check if a node
         // has been visited or not
@@ -55,6 +58,6 @@ public class Main {
 
         // ans is the minimum weight Hamiltonian Cycle
         System.out.println(ans);
-    */
+
     }
 }
