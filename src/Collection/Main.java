@@ -26,7 +26,6 @@ public class Main {
         initialization(continent);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                System.out.println("In the TSP branch!!");
                 System.out.println("TSP");
                 System.out.println(continent[i].allPlaces[j].name);
             }
@@ -38,26 +37,29 @@ public class Main {
 
 
         // n is the number of nodes i.e. V
-        int n = 4;
 
-        int[][] graph = {{0, 10, 15, 20},
-                        {10, 0, 35, 25},
-                        {15, 35, 0, 30},
-                        {20, 25, 30, 0}};
+            // Input Matrix
+            int[][] tsp = {
+                    { -1, 10, 15, 20 },
+                    { 10, -1, 35, 25 },
+                    { 15, 35, -1, 30 },
+                    { 20, 25, 30, -1 }
+            };
+
+            // Function Call
+
 
         // Boolean array to check if a node
         // has been visited or not
-        boolean[] v = new boolean[n];
         Customer c = new Customer();
         // Mark 0th node as visited
-        v[0] = true;
         int ans = Integer.MAX_VALUE;
 
         // Find the minimum weight Hamiltonian Cycle
-        ans = Customer.tsp(graph, v, 0, n, 1, 0, ans);
-
+       // ans = Customer.tsp(graph, v, 0, n, 1, 0, ans);
+            c.findMinRoute(tsp);
         // ans is the minimum weight Hamiltonian Cycle
-        System.out.println(ans);
+       // System.out.println(ans);
 
     }
 }
