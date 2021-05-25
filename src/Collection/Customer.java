@@ -84,12 +84,13 @@ public class Customer {
 
         String line = "";
         String splitBy = ",";
+
         try
         {
             BufferedReader br = new BufferedReader(new FileReader("src\\Europe.csv"));
             double [][] graph=new double[choices.size()][choices.size()];
-            int l=0;
             Location[] locArr= new Location[choices.size()];
+            int l=0;
             while ((line = br.readLine()) != null)   //returns a Boolean value
             {
                 String[] country = line.split(splitBy);    // use comma as separator
@@ -117,6 +118,7 @@ public class Customer {
                 }
                 System.out.println();
             }
+            computeShortestPath(locArr,graph);
         }
 
         catch (
@@ -124,66 +126,24 @@ public class Customer {
         {
             e.printStackTrace();
         }
+
+
     }
 
 
 
-
-    /*static int tsp(int[][] graph, boolean[] v, int currPos, int n, int count, int cost, int ans)
-    {
-
-        // If last node is reached and it has a link
-        // to the starting node i.e the source then
-        // keep the minimum value out of the total cost
-        // of traversal and "ans"
-        // Finally return to check for more possible values
-        if (count == n && graph[currPos][0] > 0)
+        public List<Integer> findMinRoute(double[][] tsp)
         {
-            ans = Math.min(ans, cost + graph[currPos][0]);
-
-            return ans;
-        }
-
-        // BACKTRACKING STEP
-        // Loop to traverse the adjacency list
-        // of currPos node and increasing the count
-        // by 1 and cost by graph[currPos,i] value
-        for (int i = 0; i < n; i++)
-        {
-            if (!v[i] && graph[currPos][i] > 0)
-            {
-
-                // Mark as visited
-                v[i] = true;
-                System.out.println("current pos: "+i);
-                ans = tsp(graph, v, i, n, count + 1, cost + graph[currPos][i], ans);
-
-                // Mark ith node as unvisited
-                v[i] = false;
-            }
-        }
-        return ans;
-    }*/
-
-
-
-        // Function to find the minimum
-        // cost path for all the paths
-        public void findMinRoute(int[][] tsp)
-        {
-            int sum = 0;
+            double sum = 0;
             int counter = 0;
             int j = 0, i = 0;
-            int min = Integer.MAX_VALUE;
+            double min = Double.MAX_VALUE;
             List<Integer> visitedRouteList = new ArrayList<>();
 
-            // Starting from the 0th indexed
-            // city i.e., the first city
             visitedRouteList.add(0);
             int[] route = new int[tsp.length];
 
-            // Traverse the adjacency
-            // matrix tsp[][]
+
             while (i < tsp.length
                     && j < tsp[i].length) {
 
@@ -192,9 +152,7 @@ public class Customer {
                     break;
                 }
 
-                // If this path is unvisited then
-                // and if the cost is less then
-                // update the cost
+
                 if (j != i && !(visitedRouteList.contains(j))) {
                     if (tsp[i][j] < min) {
                         min = tsp[i][j];
@@ -203,8 +161,6 @@ public class Customer {
                 }
                 j++;
 
-                // Check all paths from the
-                // ith indexed city
                 if (j == tsp[i].length) {
                     sum += min;
                     min = Integer.MAX_VALUE;
@@ -215,8 +171,6 @@ public class Customer {
                 }
             }
 
-            // Update the ending city in array
-            // from city which was last visited
             i = route[counter - 1] - 1;
 
             for (j = 0; j < tsp.length; j++) {
@@ -225,20 +179,24 @@ public class Customer {
                     min = tsp[i][j];
                     route[counter] = j + 1;
                 }
-              //  System.out.println("  " + route[counter]);
             }
 
-            /*sum += min;
+            sum += min;
 
-            // Started from the node where
-            // we finished as well.
-            System.out.print("Minimum Cost is : ");
-            System.out.println(sum);*/
+            System.out.print("Minimum Duration is : ");
+            System.out.println(sum);
+
             System.out.println("ArrayList after addition of an element : "+visitedRouteList);
-
+            return visitedRouteList;
         }
 
-
+        void computeShortestPath( Location[] locArr,double [][] graph){
+            List<Integer> visitedRouteList=findMinRoute(graph);
+            System.out.println("ROUTE");
+            for(int i=0;i< visitedRouteList.size();i++){
+                System.out.println("===="+locArr[visitedRouteList.get(i)].name);
+            }
+        }
         // Driver Code
 
     }
