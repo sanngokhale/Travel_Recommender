@@ -56,7 +56,7 @@ public class Customer {
         choices.add(0);
         bucketList[0] = new Location();
         bucketList[0].name = "India";
-        System.out.print("Enter country numbers you want to visit (Enter 0 to stop):  ");
+        System.out.println("Enter country numbers you want to visit (Enter 0 to stop):  ");
         while (choose != 0) {
             System.out.print("Enter: ");
             choose = input.nextInt();
@@ -198,12 +198,7 @@ public class Customer {
         List<Integer> visitedRouteList = findMinRoute(graph);
         System.out.println("ROUTE");
         for (int i = 0; i < visitedRouteList.size(); i++) {
-            System.out.println("====" + locArr[visitedRouteList.get(i)].name);
+            System.out.print(locArr[visitedRouteList.get(i)].name + " ===> ");
         }
     }
-    // Driver Code
-
 }
-
-
-
