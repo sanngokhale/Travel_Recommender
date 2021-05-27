@@ -9,15 +9,17 @@ import java.util.Scanner;
 
 class Person {
     protected String name;
-    protected int age;
-    protected char gender;
+    protected int medicalhist;
+    //protected char gender;
 
 }
 
 public class Customer {
     protected int id;
+    Scanner input = new Scanner(System.in);
     protected Person client;
-    protected int members;
+    protected boolean family;
+    protected int members;  //no of tickets
     protected Location[] bucketList;
     protected ArrayList<Integer> choices;
     protected Location[] shortestRoute;
@@ -29,12 +31,41 @@ public class Customer {
         shortestRoute= new Location[10];
     }
 
-    public void acceptDetails() {
-        Scanner input = new Scanner(System.in);
+    public void acceptPersonalDetails(){
+        int option = -1;
+
         System.out.print("Enter your name: ");
         client.name = input.nextLine();
+        System.out.print("Do the members have any severe medical history??  1.Yes 2.No");
+        client.medicalhist = input.nextInt();
+        System.out.println("\t\t\t\t\t1.Travelling with family       2.Business Trip");
+        option = input.nextInt();
+        while(option!=1 || option !=2 ) {
+            System.out.println("Enter valid option!!");
+            option = input.nextInt();
+        }
+            if (option == 1) {
+                acceptFamilyDetails();
+                family=true;
+            } else if (option == 2) {
+                acceptBusinessTripDetails();
+                family=false;
+            }
+
+    }
+
+    public void acceptFamilyDetails(){  //
         System.out.print("Enter number of tickets you want to book: ");
         this.members = input.nextInt();
+        System.out.print("Enter number of people with age 80+: ");
+        int eighty = input.nextInt();
+        //less than 5
+    }
+
+    public void acceptBusinessTripDetails(){   //
+        System.out.print("Enter number of tickets you want to book: ");
+        this.members = input.nextInt();
+
     }
 
     public void questionnaire() {
@@ -152,12 +183,15 @@ public class Customer {
         visitedRouteList.add(0);
         int[] route = new int[tsp.length];
 
+
         while (i < tsp.length && j < tsp[i].length) {
 
             // Corner of the Matrix
             if (counter >= tsp[i].length - 1) {
                 break;
             }
+
+
             if (j != i && !(visitedRouteList.contains(j))) {
                 if (tsp[i][j] < min) {
                     min = tsp[i][j];
@@ -165,6 +199,7 @@ public class Customer {
                 }
             }
             j++;
+
             if (j == tsp[i].length) {
                 sum += min;
                 min = Integer.MAX_VALUE;
@@ -175,6 +210,7 @@ public class Customer {
                 counter++;
             }
         }
+
         i = route[counter - 1] - 1;
 
         for (j = 0; j < tsp.length; j++) {
