@@ -15,6 +15,7 @@ class Person {
 }
 
 public class Customer {
+    protected int id;
     Scanner input = new Scanner(System.in);
     protected Person client;
     protected boolean family;
@@ -27,6 +28,7 @@ public class Customer {
     public Customer() {
         bucketList = new Location[10];
         choices = new ArrayList<>();
+        shortestRoute= new Location[10];
     }
 
     public void acceptPersonalDetails(){
@@ -71,12 +73,12 @@ public class Customer {
     }
 
 
-    public void acceptBucket(Location[] allPlaces) {
+    public void acceptBucket(Continents conti) {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Make your bucket list");
-        for (int i=1;i<allPlaces.length;i++){
-            System.out.println(i+". "+allPlaces[i].name);
+        for (int i = 1; i < conti.allPlaces.length; i++) {
+            System.out.println(i + ". " + conti.allPlaces[i].name);
         }
         System.out.println("0.Go back to main menu");
         int choose = -1;
@@ -87,12 +89,12 @@ public class Customer {
         bucketList[0].name = "India";
         System.out.println("Enter country numbers you want to visit (Enter 0 to stop):  ");
         while (choose != 0) {
-           // System.out.print("Enter: ");
+            // System.out.print("Enter: ");
             choose = input.nextInt();
-            if(choose!=0) {
+            if (choose != 0) {
                 choices.add(choose);
                 bucketList[b] = new Location();
-                bucketList[b].name = allPlaces[choose].name;
+                bucketList[b].name = conti.allPlaces[choose].name;
                 System.out.println(bucketList[b].name + " Added");
                 b += 1;
             }
@@ -132,8 +134,8 @@ public class Customer {
         String splitBy = ",";
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src\\Europe.csv"));
-            System.out.println("Choice size "+choices.size());
+            BufferedReader br = new BufferedReader(new FileReader("src\\"+conti.name+".csv"));
+            System.out.println("Choice size " + choices.size());
             double[][] graph = new double[choices.size()][choices.size()];                                  // l for locArr traversal
             while ((line = br.readLine()) != null)   //returns a Boolean value
             {
@@ -152,11 +154,11 @@ public class Customer {
                 }
             }
 
-            System.out.println("Graph row and col "+graph.length+"  "+graph[0].length);
+            System.out.println("Graph row and col " + graph.length + "  " + graph[0].length);
 
 
-            for (int i=0;i< graph.length;i++) {
-                for (int j=0;j<graph[i].length;j++) {
+            for (int i = 0; i < graph.length; i++) {
+                for (int j = 0; j < graph[i].length; j++) {
                     System.out.print("***" + graph[i][j] + "   ");
                 }
                 System.out.println();
@@ -177,7 +179,7 @@ public class Customer {
         int j = 0, i = 0;
         double min = Double.MAX_VALUE;
         List<Integer> visitedRouteList = new ArrayList<>();
-
+        int r=0;
         visitedRouteList.add(0);
         int[] route = new int[tsp.length];
 
@@ -202,6 +204,7 @@ public class Customer {
                 sum += min;
                 min = Integer.MAX_VALUE;
                 visitedRouteList.add(route[counter] - 1);
+                //shortestRoute[r++].name=bucketList[route[counter] - 1].name;
                 j = 0;
                 i = route[counter] - 1;
                 counter++;
@@ -223,15 +226,30 @@ public class Customer {
         System.out.print("Minimum Duration is : ");
         System.out.println(sum);
 
-        System.out.println("ArrayList after addition of an element : " + visitedRouteList);
+        //System.out.println("ArrayList after addition of an element : " + visitedRouteList);
         return visitedRouteList;
     }
 
     void computeShortestPath(ArrayList<Integer> choices, double[][] graph) {
         List<Integer> visitedRouteList = findMinRoute(graph);
         System.out.println("ROUTE");
-        for (int i = 0; i < visitedRouteList.size(); i++) {                         //
+        int i;
+        for (i= 0; i < visitedRouteList.size()-1; i++) {                         //
+            System.out.println(bucketList[visitedRouteList.get(i)].name + " ===> "+bucketList[visitedRouteList.get(i+1)].name+"----->"+graph[visitedRouteList.get(i)][visitedRouteList.get(i+1)]);
+        }
+        System.out.println(bucketList[visitedRouteList.get(i)].name + " ===> "+bucketList[visitedRouteList.get(0)].name+"----->"+graph[visitedRouteList.get(i)][visitedRouteList.get(0)]);
+        System.out.println();
+        for (i= 0; i < visitedRouteList.size(); i++) {
+            shortestRoute[i]=new Location();
+            shortestRoute[i].name=bucketList[0].name;
             System.out.print(bucketList[visitedRouteList.get(i)].name + " ===> ");
         }
+        shortestRoute[i]=new Location();
+        shortestRoute[i].name=bucketList[0].name;
+        System.out.print(bucketList[visitedRouteList.get(0)].name);
+
+       /* for (int k=0;k<shortestRoute.length;k++){
+            System.out.println("//"+shortestRoute[k].name);
+        }*/
     }
 }
