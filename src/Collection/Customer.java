@@ -100,7 +100,7 @@ public class Customer {
                 continue;
             }
             if(choices.contains(choose) && choose!=0){
-                System.out.println("Country is already added to your bucket list!! ");
+                System.out.println("Country is already added to your bucket list!!! ");
                 continue;
             }
             //choose = input.nextInt();
