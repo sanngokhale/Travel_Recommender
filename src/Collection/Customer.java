@@ -17,7 +17,7 @@ class Person {
 public class Customer {
     protected int id;
     Scanner input = new Scanner(System.in);
-    protected Person client;
+    protected Person client=new Person();
     protected boolean family;
     protected int members;  //no of tickets
     protected Location[] bucketList;
@@ -40,17 +40,21 @@ public class Customer {
         client.medicalhist = input.nextInt();
         System.out.println("\t\t\t\t\t1.Travelling with family       2.Business Trip");
         option = input.nextInt();
-        while(option!=1 || option !=2 ) {
-            System.out.println("Enter valid option!!");
-            option = input.nextInt();
-        }
+        do {
             if (option == 1) {
                 acceptFamilyDetails();
                 family=true;
-            } else if (option == 2) {
+                break;
+            }else if(option == 2) {
                 acceptBusinessTripDetails();
                 family=false;
+                break;
+            }else{
+                System.out.println("Enter valid option!!");
+                option = input.nextInt();
             }
+        } while (option != 1 && option != 2);
+
 
     }
 
@@ -89,15 +93,21 @@ public class Customer {
         bucketList[0].name = "India";
         System.out.println("Enter country numbers you want to visit (Enter 0 to stop):  ");
         while (choose != 0) {
-            // System.out.print("Enter: ");
             choose = input.nextInt();
-            if (choose != 0) {
+            // System.out.print("Enter: ");
+            if(choose>=8 || choose<0) {
+                System.out.println("Enter a valid option!!");
+                continue;
+            }
+            //choose = input.nextInt();
+
+           // if (choose != 0) {
                 choices.add(choose);
                 bucketList[b] = new Location();
                 bucketList[b].name = conti.allPlaces[choose].name;
                 System.out.println(bucketList[b].name + " Added");
                 b += 1;
-            }
+
             /*switch (choose) {
                 case 0:
                     System.out.println("Going back");
