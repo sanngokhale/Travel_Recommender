@@ -17,7 +17,7 @@ class Person {
 public class Customer {
     protected int id;
     Scanner input = new Scanner(System.in);
-    protected Person client;
+    protected Person client=new Person();
     protected boolean family;
     protected int members;  //no of tickets
     protected Location[] bucketList;
@@ -40,17 +40,21 @@ public class Customer {
         client.medicalhist = input.nextInt();
         System.out.println("\t\t\t\t\t1.Travelling with family       2.Business Trip");
         option = input.nextInt();
-        while(option!=1 || option !=2 ) {
-            System.out.println("Enter valid option!!");
-            option = input.nextInt();
-        }
+        do {
             if (option == 1) {
                 acceptFamilyDetails();
                 family=true;
-            } else if (option == 2) {
+                break;
+            }else if(option == 2) {
                 acceptBusinessTripDetails();
                 family=false;
+                break;
+            }else{
+                System.out.println("Enter valid option!!");
+                option = input.nextInt();
             }
+        } while (option != 1 && option != 2);
+
 
     }
 
@@ -89,15 +93,25 @@ public class Customer {
         bucketList[0].name = "India";
         System.out.println("Enter country numbers you want to visit (Enter 0 to stop):  ");
         while (choose != 0) {
-            // System.out.print("Enter: ");
             choose = input.nextInt();
-            if (choose != 0) {
+            // System.out.print("Enter: ");
+            if(choose>=8 || choose<0 ) {
+                System.out.println("Enter a valid option!!");
+                continue;
+            }
+            if(choices.contains(choose) && choose!=0){
+                System.out.println("Country is already added to your bucket list!! ");
+                continue;
+            }
+            //choose = input.nextInt();
+
+           // if (choose != 0) {
                 choices.add(choose);
                 bucketList[b] = new Location();
                 bucketList[b].name = conti.allPlaces[choose].name;
                 System.out.println(bucketList[b].name + " Added");
                 b += 1;
-            }
+
             /*switch (choose) {
                 case 0:
                     System.out.println("Going back");
@@ -174,12 +188,10 @@ public class Customer {
 
 
     public List<Integer> findMinRoute(double[][] tsp) {
-        double sum = 0;
         int counter = 0;
         int j = 0, i = 0;
         double min = Double.MAX_VALUE;
         List<Integer> visitedRouteList = new ArrayList<>();
-        int r=0;
         visitedRouteList.add(0);
         int[] route = new int[tsp.length];
 
@@ -201,7 +213,6 @@ public class Customer {
             j++;
 
             if (j == tsp[i].length) {
-                sum += min;
                 min = Integer.MAX_VALUE;
                 visitedRouteList.add(route[counter] - 1);
                 //shortestRoute[r++].name=bucketList[route[counter] - 1].name;
@@ -221,11 +232,6 @@ public class Customer {
             }
         }
 
-        sum += min;
-
-        System.out.print("Minimum Duration is : ");
-        System.out.println(sum);
-
         //System.out.println("ArrayList after addition of an element : " + visitedRouteList);
         return visitedRouteList;
     }
@@ -234,9 +240,12 @@ public class Customer {
         List<Integer> visitedRouteList = findMinRoute(graph);
         System.out.println("ROUTE");
         int i;
+        double total_dist=0;
         for (i= 0; i < visitedRouteList.size()-1; i++) {                         //
+            total_dist+=graph[visitedRouteList.get(i)][visitedRouteList.get(i+1)];
             System.out.println(bucketList[visitedRouteList.get(i)].name + " ===> "+bucketList[visitedRouteList.get(i+1)].name+"----->"+graph[visitedRouteList.get(i)][visitedRouteList.get(i+1)]);
         }
+        total_dist+=graph[visitedRouteList.get(i)][visitedRouteList.get(0)];
         System.out.println(bucketList[visitedRouteList.get(i)].name + " ===> "+bucketList[visitedRouteList.get(0)].name+"----->"+graph[visitedRouteList.get(i)][visitedRouteList.get(0)]);
         System.out.println();
         for (i= 0; i < visitedRouteList.size(); i++) {
@@ -247,7 +256,8 @@ public class Customer {
         shortestRoute[i]=new Location();
         shortestRoute[i].name=bucketList[0].name;
         System.out.print(bucketList[visitedRouteList.get(0)].name);
-
+        System.out.println("\n");
+        System.out.println("Total minimum Duration by flight is "+total_dist);
        /* for (int k=0;k<shortestRoute.length;k++){
             System.out.println("//"+shortestRoute[k].name);
         }*/
