@@ -111,7 +111,7 @@ public class Customer {
                 bucketList[b].name = conti.allPlaces[choose].name;
                 System.out.println(bucketList[b].name + " Added");
                 b += 1;
-
+            }
             /*switch (choose) {
                 case 0:
                     System.out.println("Going back");
