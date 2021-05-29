@@ -7,18 +7,20 @@ public class Hashing {
 
     int hash(long id)           //calculate the hash address for given id
     {
-        return (int) (id%40);
+        return (int) (id%20);
     }
 
 
-    void create(Customer c)
-    {
-        if(count ==40){             //table full
+    void create(Customer c) {
+        if(count ==20){             //table full
             System.out.println("Table is full!!");
             return;
         }
-        int i=hash(c.id);                            //find index to store the customer
-        while(customer[i]!=null && i<40){
+        System.out.println("Customer with id "+c.id + " has been registered!!");
+        int i=hash(c.id); //find index to store the customer
+
+
+        while(customer[i]!=null && i<20){
             i++;                                    //if index is occupied, move forward
         }
         customer[i]=new Customer();         //assign vacant location to customer
@@ -40,11 +42,10 @@ public class Hashing {
     }*/
 
 
-    void search(int key)
-    {
+    void search(int key) {
         int i=hash(key);                //find address for given key
         boolean flag=false;             //set flag to false
-        while (i<40){
+        while (i<20){
             if(customer[i]==null){         //if null move forward
                 i++;
             }
