@@ -41,14 +41,20 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int opt, opt1=-1, opt2, opt3=-1, opt4=-1;
         boolean flag=false;
+
         do {
             System.out.println("\n\t\t\tPlease select a kind of user:");
             System.out.println("\n\n\t\t\t\t1.New User\n\n\t\t\t\t2.Existing User\n\n\t\t\t\t3.Exit");
             opt = sc.nextInt();
             switch (opt) {
-                case 1:
+                case 1: //new user
                     do {
                         System.out.println("\n\n\n\t\t\t\tNEW USER\n");
+                        //initialize a customer from the array of user
+                       // System.out.println("Enter pa");
+                         //save the password, name, id(random)  --->customer che variables...
+                        //message...registration is successful...
+                        //this is ur id, keep it for future reference
                         System.out.println("\n\n\t\t\tChoose the type of details you want to enter:");
                         System.out.println("\n\n\t\t\t\t1.Personal Details\n\n\t\t\t\t2.Travel Details\n\n\t\t\t\t3.Back\n\n\t\t\t\t ");
                         opt1 = sc.nextInt();
@@ -68,12 +74,18 @@ public class Main {
                                 break;
                             default:
                                 break;
-                        }
+                        }// name , id, password, buckt list into the csv
+                        //will go into the hashtable--->object of customer
                     } while (opt1 != 3);
                     break;
                 case 2: //existing user
                     do {
                         System.out.println("\n\n\t\t\t***** EXISTING USER *****");
+                        // login
+                        //enter id, password
+                        //search...match ->menu
+                        //1)hashing search-->id not registered!!
+                        //if id-yes....and password do not match...1)reenter 2)go to main menu & register as a new user, go back
                         System.out.println("Please select the type of operation that you would like to perform:");
                         System.out.println("\n\n\t\t\t1.View Personal Details\n\n\t\t\t2.View Travel Details\n\n\t\t\t3.Edit Details\n\n\t\t\t4.Back\n\n\t\t\t");
                         opt2 = sc.nextInt();

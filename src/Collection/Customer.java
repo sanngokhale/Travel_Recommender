@@ -99,12 +99,11 @@ public class Customer {
                 System.out.println("Enter a valid option!!");
                 continue;
             }
+            //choose = input.nextInt();
             if(choices.contains(choose) && choose!=0){
                 System.out.println("Country is already added to your bucket list!!! ");
                 continue;
             }
-            //choose = input.nextInt();
-
             // if (choose != 0) {
             choices.add(choose);
             bucketList[b] = new Location();
