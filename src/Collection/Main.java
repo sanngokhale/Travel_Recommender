@@ -50,18 +50,24 @@ public class Main {
         do {
             System.out.println("\n\t\t\tPlease select a kind of user:");
             System.out.println("\n\n\t\t\t\t1.New User\n\n\t\t\t\t2.Existing User\n\n\t\t\t\t3.Exit");
+            c=new Customer();
             opt = sc.nextInt();
             switch (opt) {
                 case 1: //new user
                     do {
                         System.out.println("\n\n\n\t\t\t\tNEW USER\n");
-                        c=new Customer();
-                        c.id= idBase+count*2 ;          //Math.random()   maintain min and max
-                        System.out.print("Create Password: ");
-                        c.password=sc.next();
-                        System.out.println("Registration is successful!");
-                        System.out.println("Your customer id is "+c.id+",  keep it for future reference.");
+
+
+                        if(c.password.equals("")) {
+                            c.id= idBase+count*2 ;//Math.random()   maintain min and max
+                            count++;
+                            System.out.print("Create Password: ");
+                            c.password = sc.next();
+                            System.out.println("Registration is successful!");
+                            System.out.println("Your customer id is " + c.id + ",  keep it for future reference.");
+                        }
                         //initialize a customer from the array of user
+
                        // System.out.println("Enter pa");
                          //save the password, name, id(random)  --->customer che variables...
                         //message...registration is successful...
@@ -86,8 +92,9 @@ public class Main {
                             default:
                                 break;
                         }
-                        count++;
                         hash.create(c);
+
+
                         // name , id, password, buckt list into the csv
                         //will go into the hashtable--->object of customer
                     } while (opt1 != 3);
