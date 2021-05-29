@@ -2,6 +2,7 @@ package Collection;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -28,7 +29,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Continents[] continent = new Continents[3];
         initialization(continent);
       /* for (int i = 0; i < 3; i++) {
@@ -37,7 +38,11 @@ public class Main {
                 System.out.println(continent[i].allPlaces[j].name);
             }
         }*/
-        Customer c1 = new Customer();
+        //Customer[] customer = new Customer[20];
+        Customer c;
+        Hashing hash=new Hashing();
+        int count=0;
+        int idBase=100;
         Scanner sc = new Scanner(System.in);
         int opt, opt1=-1, opt2, opt3=-1, opt4=-1;
         boolean flag=false;
@@ -50,6 +55,12 @@ public class Main {
                 case 1: //new user
                     do {
                         System.out.println("\n\n\n\t\t\t\tNEW USER\n");
+                        c=new Customer();
+                        c.id= idBase+count*2 ;          //Math.random()   maintain min and max
+                        System.out.print("Create Password: ");
+                        c.password=sc.next();
+                        System.out.println("Registration is successful!");
+                        System.out.println("Your customer id is "+c.id+",  keep it for future reference.");
                         //initialize a customer from the array of user
                        // System.out.println("Enter pa");
                          //save the password, name, id(random)  --->customer che variables...
@@ -60,7 +71,7 @@ public class Main {
                         opt1 = sc.nextInt();
                         switch (opt1) {
                             case 1://personal details
-                                c1.acceptPersonalDetails();
+                                c.acceptPersonalDetails();
                                 flag=true;
                                 break;
                             case 2:// Travel details
@@ -68,13 +79,16 @@ public class Main {
                                 else {
                                     System.out.println("Which continent do you want to visit?\n1.Europe\n2.Asia\n3.North America\n");
                                     int countiChoice = sc.nextInt();
-                                    c1.acceptBucket(continent[countiChoice - 1]);
+                                    c.acceptBucket(continent[countiChoice - 1]);
                                 }
                             System.out.println("\n\n* For modifications,Please visit 'existing user' section");
                                 break;
                             default:
                                 break;
-                        }// name , id, password, buckt list into the csv
+                        }
+                        count++;
+                        hash.create(c);
+                        // name , id, password, buckt list into the csv
                         //will go into the hashtable--->object of customer
                     } while (opt1 != 3);
                     break;
@@ -142,3 +156,5 @@ public class Main {
         }*/
     }
 }
+
+
