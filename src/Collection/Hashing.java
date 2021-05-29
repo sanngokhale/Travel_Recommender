@@ -9,7 +9,7 @@ public class Hashing {
     {
         return (int) (id%40);
     }
-
+//changes
 
     void create(Customer c)
     {
