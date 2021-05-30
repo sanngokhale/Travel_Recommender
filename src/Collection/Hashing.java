@@ -45,27 +45,63 @@ public class Hashing {
         }
     }*/
 
-
-    void search(int key) {
-        int i=hash(key);                //find address for given key
+/*
+    Customer search(int key) {
+        int i=hash(key); //find address for given key
+        Customer c1 = null;
         boolean flag=false;             //set flag to false
         while (i<20){
             if(customer[i]==null){         //if null move forward
                 i++;
             }
-            else if(customer[i].id!=key) {     //if key doesn't match move forward
+            else if(customer[i].id != key) {     //if key doesn't match move forward
                 i++;
             }
-            else if(customer[i].id==key) {
+            else if(customer[i].id == key) {
                 System.out.println("Found!!");  //if key matched display and break
            //     customer[i].display();
-                flag=true;                      //set flag to true when key is found
+                flag=true;
+                c1=customer[i];
+                break;
+               //set flag to true when key is found
+            }
+            if(i==19)i=0;
+        }
+        if(flag=true)
+        return c1;
+        return null;
+    }*/
+
+
+    Customer search(int key) {
+        boolean flag = false;
+        //System.out.println("Enter  the customer ID to be searched.");
+        //long search_ID = sc.nextLong();
+        int i = hash(key);
+        //if {(hashtable[hashval] == null) hashval = (hashval + 1) % 20;
+
+        if (customer[i] != null) {
+            if (customer[i].id == key) {
+                //customer[i].id .display();
+                return customer[i];
+            }
+        }
+        //(hashval + 1) % 20;
+
+        int temp = i;
+        i = (i + 1) % 20;
+        while (temp != i) {
+            if (customer[i] == null) i = (i + 1) % 20;
+            else if (customer[i].id != key) i = (i + 1) % 20;
+            else if (customer[i].id == key) {
+                //customer[i].display();
+                flag = true;
                 break;
             }
         }
-
-        if(!flag) {
-            System.out.println("Data not found!!");         //if key is not found
-        }
+        if (!flag) return null;
+        return customer[i];
     }
+
+    
 }

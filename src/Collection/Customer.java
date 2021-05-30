@@ -42,7 +42,7 @@ public class Customer {
         int option = -1;
 
         System.out.print("Enter your name: ");
-        client.name = input.nextLine();
+        client.name = input.next();
         System.out.print("Enter your age: ");
         client.age = input.nextInt();
         System.out.print("Do the members have any severe medical history??  1.Yes 2.No");
