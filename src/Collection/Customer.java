@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 class Person {
     protected String name;
+    protected int age;
     protected int medicalhist;
     //protected char gender;
 
@@ -25,6 +26,7 @@ public class Customer {
     protected ArrayList<Integer> choices;
     protected Location[] shortestRoute;
     protected double minDuration;
+    double[][] graph;
     // private float budget;
 
     public Customer() {
@@ -33,6 +35,7 @@ public class Customer {
         bucketList = new Location[10];
         choices = new ArrayList<>();
         shortestRoute= new Location[10];
+
     }
 
     public void acceptPersonalDetails(){
@@ -40,6 +43,8 @@ public class Customer {
 
         System.out.print("Enter your name: ");
         client.name = input.nextLine();
+        System.out.print("Enter your age: ");
+        client.age = input.nextInt();
         System.out.print("Do the members have any severe medical history??  1.Yes 2.No");
         client.medicalhist = input.nextInt();
         System.out.println("\t\t\t\t\t1.Travelling with family       2.Business Trip");
@@ -77,6 +82,7 @@ public class Customer {
     public void questionnaire() {
 
     }
+
 
 
     public void acceptBucket(Continents conti) {
@@ -151,7 +157,7 @@ public class Customer {
         try {
             BufferedReader br = new BufferedReader(new FileReader("src\\"+conti.name+".csv"));
            // System.out.println("Choice size " + choices.size());
-            double[][] graph = new double[choices.size()][choices.size()];                                  // l for locArr traversal
+            graph = new double[choices.size()][choices.size()];                                  // l for locArr traversal
             while ((line = br.readLine()) != null)   //returns a Boolean value
             {
                 String[] country = line.split(splitBy);    // use comma as separator
@@ -178,12 +184,44 @@ public class Customer {
                 }
                 System.out.println();
             }*/
-            computeShortestPath(choices, graph);
+
         } catch (
                 IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void DisplayCustomerDetails() {
+       //    name, id, age, family details, no of tickets booked......fimily
+        //business->name, medical history
+        System.out.println("-----  Customer details -----");
+        System.out.println("Name : " + client.name);
+        System.out.println("Customer Id : " + id);
+        System.out.println("Age : " + client.name);
+        System.out.println("No of tickets booked : "+ members);
+    }
+
+    public void DisplayTravelsDetails() {
+        //    , bucketlist// shortest path, minimum travel duration
+        //no of tickets
+        //Hhello xxx here are your travel details...
+        System.out.println("Hello "+ client.name +"!" + "     Here are your Travel details...");
+        System.out.println("-----  Travel details -----\nNumber of tickets booked : "+ members);
+        System.out.println("Your Bucket List is : ");
+        for(int i=0;i< choices.size();i++){
+            System.out.println(bucketList[i].name);
+        }
+        computeShortestPath(choices, graph);
+        System.out.println("This is the shortest path, which you can take while planning your journey!");
+        System.out.println("It will surely reduce your travelling time, and you can make most out of your saved time :)");
+        System.out.println("Enjoy your journey...");
+        System.out.println("Happy travelling !!  :)");
+        // this is the shortest path u can take to minimize your traveling time.
+//enjoy your journey
+    }
+
+
+
 
 
     public List<Integer> findMinRoute(double[][] tsp) {
@@ -191,7 +229,7 @@ public class Customer {
         int j = 0, i = 0;
         double min = Double.MAX_VALUE;
         List<Integer> visitedRouteList = new ArrayList<>();
-        int r=0;
+        //int r=0;
         visitedRouteList.add(0);
         int[] route = new int[tsp.length];
 
@@ -253,7 +291,7 @@ public class Customer {
         }
         shortestRoute[i]=new Location();
         shortestRoute[i].name=bucketList[0].name;
-        System.out.print(bucketList[visitedRouteList.get(0)].name);
+        System.out.print(bucketList[visitedRouteList.get(0)].name); //minimum duration
 
        /* for (int k=0;k<shortestRoute.length;k++){
             System.out.println("//"+shortestRoute[k].name);
