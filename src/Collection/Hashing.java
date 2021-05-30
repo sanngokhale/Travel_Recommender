@@ -19,11 +19,15 @@ public class Hashing {
         System.out.println("Customer with id "+c.id + " has been registered!!");
         int i=hash(c.id); //find index to store the customer
 
-
-        while(customer[i]!=null && i<20){
+        while(customer[i]!=null && i<=20){
+            if(i==20){
+                i=-1;
+            }
             i++;                                    //if index is occupied, move forward
         }
-        customer[i]=new Customer();         //assign vacant location to customer
+        System.out.println("hash value "+i);
+        customer[i]=new Customer();
+        customer[i]=c;
         count++;                                        //increase count
     }
 
