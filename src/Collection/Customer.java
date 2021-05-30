@@ -279,20 +279,25 @@ public class Customer {
         List<Integer> visitedRouteList = findMinRoute(graph);
         System.out.println("ROUTE");
         int i;
+        double total_dist=0;
         for (i= 0; i < visitedRouteList.size()-1; i++) {                         //
+            total_dist+=graph[visitedRouteList.get(i)][visitedRouteList.get(i+1)];
             System.out.println(bucketList[visitedRouteList.get(i)].name + " ===> "+bucketList[visitedRouteList.get(i+1)].name+"----->"+graph[visitedRouteList.get(i)][visitedRouteList.get(i+1)]);
         }
+        total_dist+=graph[visitedRouteList.get(i)][visitedRouteList.get(0)];
         System.out.println(bucketList[visitedRouteList.get(i)].name + " ===> "+bucketList[visitedRouteList.get(0)].name+"----->"+graph[visitedRouteList.get(i)][visitedRouteList.get(0)]);
         System.out.println();
         for (i= 0; i < visitedRouteList.size(); i++) {
             shortestRoute[i]=new Location();
-            shortestRoute[i].name=bucketList[0].name;
+            shortestRoute[i].name=bucketList[i].name;
             System.out.print(bucketList[visitedRouteList.get(i)].name + " ===> ");
         }
         shortestRoute[i]=new Location();
         shortestRoute[i].name=bucketList[0].name;
         System.out.print(bucketList[visitedRouteList.get(0)].name); //minimum duration
-
+        System.out.println("\n");
+        minDuration=total_dist;
+        System.out.println("Total minimum Duration by flight is "+total_dist);
        /* for (int k=0;k<shortestRoute.length;k++){
             System.out.println("//"+shortestRoute[k].name);
         }*/
