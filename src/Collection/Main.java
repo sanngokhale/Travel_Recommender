@@ -1,9 +1,6 @@
 package Collection;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,9 +28,37 @@ public class Main {
     }
 
 
-    public static void readUserData() {
-
-    }
+    public static void readUserData(Hashing hash) throws IOException {
+        String line = "";
+        String splitBy = ",";
+        int i=0;
+        Customer c;
+        BufferedReader br = new BufferedReader(new FileReader("src\\users.csv"));
+        while ((line = br.readLine()) != null)   //returns a Boolean value
+        {
+            c=new Customer();
+            int k;
+            String[] details = line.split(splitBy);
+            c.id=Integer.parseInt(details[0]);
+            c.password=details[1];
+            c.client.name=details[2];
+            for( k = 3; !details[k].equals("India"); k++){
+                c.choices.add(Integer.parseInt(details[k]));
+            }
+            for (int b=0; b < c.choices.size(); k++,b++) {
+                c.bucketList[b]=new Location();
+                c.bucketList[b].name=details[k];
+            }
+           // System.out.println("choice "+c.choices.size());
+            for (int j = 0; j < c.choices.size()+1; k++,j++) {
+                //System.out.println("==short "+c.shortestRoute[j].name);
+                c.shortestRoute[j]=new Location();
+                c.shortestRoute[j].name=details[k];
+            }
+            c.minDuration=Double.parseDouble(details[k]);
+            hash.create(c);
+        }
+        }
 
     public static void writeUserData(Customer[] c) throws IOException {
         /*List<List<String>> rows = Arrays.asList(
@@ -49,38 +74,30 @@ public class Main {
                 data.add(Integer.toString(c[i].id));
                 data.add(c[i].password);
                 data.add(c[i].client.name);
-                System.out.println("---" + c[i].id);
-                System.out.println("***" + data.get(0));
+                //System.out.println("---" + c[i].id);
+              //  System.out.println("***" + data.get(0));
+                for (int j = 0; j < c[i].choices.size(); j++) {
+                    data.add(Integer.toString(c[i].choices.get(j)));
+                }
                 for (int j = 0; j < c[i].choices.size(); j++) {
                     data.add(c[i].bucketList[j].name);
                 }
-                for (int j = 0; j < c[i].choices.size(); j++) {
+                System.out.println("choice "+c[i].choices.size());
+                for (int j = 0; j < c[i].choices.size()+1; j++) {
+                    System.out.println("==short "+c[i].shortestRoute[j].name);
                     data.add(c[i].shortestRoute[j].name);
                 }
                 data.add(String.valueOf(c[i].minDuration));
                 System.out.println(data);
-                csvWriter.append("line");
-                csvWriter.append(",");
+                //csvWriter.append("line");
+               // csvWriter.append(",");
                 //csvWriter.append(Arrays.toString(data.toArray()));
-                csvWriter.append(String.join(",", data));
-                csvWriter.append("\n");
+                csvWriter.write(String.join(",", data));
+                csvWriter.write("\n");
             }
         }
         csvWriter.flush();
         csvWriter.close();
-
-      /*  FileWriter csvWriter = new FileWriter("new.csv");
-        csvWriter.append("Name");
-        csvWriter.append(",");
-        csvWriter.append("Role");
-        csvWriter.append(",");
-        csvWriter.append("Topic");
-        csvWriter.append("\n");
-
-        for (List<String> rowData : rows) {
-            csvWriter.append(String.join(",", rowData));
-            csvWriter.append("\n");
-        }*/
 
     }
 
@@ -97,6 +114,7 @@ public class Main {
         //Customer[] customer = new Customer[20];
         Customer c;
         Hashing hash = new Hashing();
+        readUserData(hash);
         int count = 0;
         int min = 10;
         int idBase = 100;
@@ -116,7 +134,7 @@ public class Main {
                 case 1: //new user
                     do {
                         System.out.println("\n\n\n\t\t\t\tNEW USER\n");
-                        //System.out.println("Password is ");
+                        System.out.println("Password is ");
                         if (c.password.equals("")) {
 
                             c.id = idBase + min + (int) (Math.random() * (min + 5));
@@ -165,6 +183,8 @@ public class Main {
                                 }
                                 System.out.println("\n\n* For modifications,Please visit 'existing user' section");
                                 break;
+                            case 3:c=new Customer();
+                            break;
 
                             default:
                                 break;
@@ -205,15 +225,13 @@ public class Main {
                                     System.out.println("Please re-enter.. ");
                                     password = sc.next();
                                 }
-                                else exitoption=true;
-                                break;
+                                else {
+                                    exitoption=true;
+                                    break;
+                                }
                             }
                         }
-                        if(exitoption) {
-                            break;
-
-                        }
-
+                        if(exitoption)break;
                         //else continue;
                             //if(!password_validation) break;
                         //login
@@ -301,7 +319,7 @@ public class Main {
                 /*for (int j = 0; j < hash.customer[i].choices.size(); j++) {
                     data.add(hash.customer[i].bucketList[j].name);
                 }
-                for (int j = 0; j < hash.customer[i].choices.size(); j++) {
+                /*for (int j = 0; j < hash.customer[i].choices.size(); j++) {
                     data.add(hash.customer[i].shortestRoute[j].name);
                 }*/
                 data.add(String.valueOf(hash.customer[i].minDuration));
