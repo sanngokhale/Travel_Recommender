@@ -199,7 +199,7 @@ public class Customer {
         System.out.println("-----  Customer details -----");
         System.out.println("Name : " + client.name);
         System.out.println("Customer Id : " + id);
-        System.out.println("Age : " + client.name);
+        System.out.println("Age : " + client.age);
         System.out.println("No of tickets booked : "+ members);
     }
 
@@ -217,7 +217,7 @@ public class Customer {
         for(i=0;i<choices.size()-1;i++){
             System.out.print(shortestRoute[i].name+" ====> ");
         }
-        System.out.println(shortestRoute[i]);
+        System.out.println(shortestRoute[i].name);
         System.out.println();
         System.out.println("This is the shortest path, which you can take while planning your journey!");
         System.out.println("It will surely reduce your travelling time, and you can make most out of your saved time :)");

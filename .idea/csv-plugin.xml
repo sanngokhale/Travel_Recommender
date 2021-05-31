@@ -38,13 +38,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="diff.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
       </map>
     </option>
   </component>

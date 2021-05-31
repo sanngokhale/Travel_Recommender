@@ -16,7 +16,7 @@ public class Hashing {
             System.out.println("Table is full!!");
             return;
         }
-        System.out.println("Customer with id "+c.id + " has been registered!!");
+        //System.out.println("Customer with id "+c.id + " has been registered!!");
         int i=hash(c.id); //find index to store the customer
 
         while(customer[i]!=null && i<=20){
@@ -25,7 +25,7 @@ public class Hashing {
             }
             i++;                                    //if index is occupied, move forward
         }
-        System.out.println("hash value "+i);
+      //  System.out.println("hash value "+i);
         customer[i]=new Customer();
         customer[i]=c;
         count++;                                        //increase count

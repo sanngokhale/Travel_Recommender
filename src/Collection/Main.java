@@ -84,7 +84,6 @@ public class Main {
                 }
                 System.out.println("choice "+c[i].choices.size());
                 for (int j = 0; j < c[i].choices.size()+1; j++) {
-                    System.out.println("==short "+c[i].shortestRoute[j].name);
                     data.add(c[i].shortestRoute[j].name);
                 }
                 data.add(String.valueOf(c[i].minDuration));
@@ -112,13 +111,12 @@ public class Main {
             }
         }*/
         //Customer[] customer = new Customer[20];
-        Customer c;
+        Customer c=new Customer();
         Hashing hash = new Hashing();
         readUserData(hash);
         int count = 0;
         int min = 10;
         int idBase = 100;
-        c = new Customer();
         Scanner sc = new Scanner(System.in);
         int opt, opt1 = -1, opt2, opt3 = -1, opt4 = -1,edit=-1;
         boolean flag2 = false;
@@ -134,7 +132,9 @@ public class Main {
                 case 1: //new user
                     do {
                         System.out.println("\n\n\n\t\t\t\tNEW USER\n");
-                        System.out.println("Password is ");
+
+
+                        System.out.println("Password is "+c.password);
                         if (c.password.equals("")) {
 
                             c.id = idBase + min + (int) (Math.random() * (min + 5));
@@ -246,10 +246,10 @@ public class Main {
                             //opt2;
                             switch (opt2) {
                                 case 1:
-                                    c.DisplayTravelsDetails();
+                                    c.DisplayCustomerDetails();
                                     //call t personal details
                                     continue;
-                                case 2:c.DisplayCustomerDetails();
+                                case 2:c.DisplayTravelsDetails();
                                     //System.out.println("Pleas enter your customer id");
                                     //int key = sc.nextInt();
                                     // hash.search(custId);
