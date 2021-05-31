@@ -165,6 +165,7 @@ public class Main {
                                 }
                                 System.out.println("\n\n* For modifications,Please visit 'existing user' section");
                                 break;
+
                             default:
                                 break;
                         }
@@ -205,9 +206,14 @@ public class Main {
                                     password = sc.next();
                                 }
                                 else exitoption=true;
+                                break;
                             }
                         }
-                        if(exitoption) break;
+                        if(exitoption) {
+                            break;
+
+                        }
+
                         //else continue;
                             //if(!password_validation) break;
                         //login
@@ -222,11 +228,10 @@ public class Main {
                             //opt2;
                             switch (opt2) {
                                 case 1:
-                                    System.out.println(c.client.name);
+                                    c.DisplayTravelsDetails();
                                     //call t personal details
                                     continue;
-                                case 2:
-                                    System.out.println("Bucket list  is " + c.bucketList[2].name);
+                                case 2:c.DisplayCustomerDetails();
                                     //System.out.println("Pleas enter your customer id");
                                     //int key = sc.nextInt();
                                     // hash.search(custId);
