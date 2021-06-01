@@ -160,7 +160,7 @@ public class Main {
                         System.out.println("\n\n\n\t\t\t\tNEW USER\n");
 
 
-                        System.out.println("Password is "+c.password);
+                      //  System.out.println("Password is "+c.password);
                         if (c.password.equals("")) {
 
                             c.id = idBase + min + (int) (Math.random() * (min + 5));
