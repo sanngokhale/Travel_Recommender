@@ -38,17 +38,38 @@ public class Customer {
 
     }
 
+
+    static int check(){                    //check if the input entered by the user is int or not
+        Scanner sc=new Scanner(System.in);
+        String temp=sc.next();
+
+        boolean flag=true;
+        try {
+            Integer num = Integer.parseInt(temp);
+        } catch (NumberFormatException e) {
+            flag = false;
+        }
+
+        if(!flag) {
+            System.out.println(temp + " is not a number. Enter a valid number.");
+            return check();
+        }
+        else
+            return  Integer.parseInt(temp);
+    }
+
+
+
     public void acceptPersonalDetails(){
         int option = -1;
 
         System.out.print("Enter your name: ");
         client.name = input.next();
         System.out.print("Enter your age: ");
-        client.age = input.nextInt();
-        System.out.print("Do the members have any severe medical history??  1.Yes 2.No");
-        client.medicalhist = input.nextInt();
+        client.age = check();
+
         System.out.println("1.Travelling with family       2.Business Trip");
-        option = input.nextInt();
+        option = check();
         do {
             if (option == 1) {
                 acceptFamilyDetails();
@@ -60,22 +81,22 @@ public class Customer {
                 break;
             }else{
                 System.out.println("Enter valid option!!");
-                option = input.nextInt();
+                option = check();
             }
         } while (option != 1 && option != 2);
     }
 
     public void acceptFamilyDetails(){  //
         System.out.print("Enter number of tickets you want to book: ");
-        this.members = input.nextInt();
+        this.members = check();
         System.out.print("Enter number of people with age 80+: ");
-        int eighty = input.nextInt();
+        int eighty = check();
         //less than 5
     }
 
     public void acceptBusinessTripDetails(){   //
         System.out.print("Enter number of tickets you want to book: ");
-        this.members = input.nextInt();
+        this.members = check();
 
     }
 
@@ -101,13 +122,13 @@ public class Customer {
         bucketList[0].name = "India";
         System.out.println("Enter country numbers you want to visit (Enter 0 to stop):  ");
         while (choose != 0) {
-            choose = input.nextInt();
+            choose = check();
             // System.out.print("Enter: ");
             if(choose>=8 || choose<0) {
                 System.out.println("Enter a valid option!!");
                 continue;
             }
-            //choose = input.nextInt();
+            //choose = check();
             if(choices.contains(choose) && choose!=0){
                 System.out.println("Country is already added to your bucket list!!! ");
                 continue;
