@@ -103,5 +103,16 @@ public class Hashing {
         return customer[i];
     }
 
-    
+    /*void modifyPersonal(Scanner sc){
+        System.out.println("Modify personal details: ");
+        System.out.println("1.Modify name  2.Change number of tickets to be book");
+        int choice = sca
+    }
+
+    void modifyTravel(){
+
+    }*/
+
+
+
 }

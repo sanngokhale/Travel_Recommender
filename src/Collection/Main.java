@@ -5,6 +5,27 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    int check(){                    //check if the input entered by the user is int or not
+        Scanner sc=new Scanner(System.in);
+        String temp=sc.next();
+
+        boolean flag=true;
+        try {
+            Integer num = Integer.parseInt(temp);
+        } catch (NumberFormatException e) {
+            flag = false;
+        }
+
+        if(!flag)
+            System.out.println(temp + " is not a number");
+        else
+            return  Integer.parseInt(temp);
+        return 0;
+    }
+
+
+
     public static void initialization(Continents[] continent) throws FileNotFoundException {
         for (int i = 0; i < 3; i++)
             continent[i] = new Continents();
@@ -58,7 +79,7 @@ public class Main {
             c.minDuration=Double.parseDouble(details[k]);
             hash.create(c);
         }
-        }
+    }
 
     public static void writeUserData(Customer[] c) throws IOException {
         /*List<List<String>> rows = Arrays.asList(
@@ -233,7 +254,7 @@ public class Main {
                         }
                         if(exitoption)break;
                         //else continue;
-                            //if(!password_validation) break;
+                        //if(!password_validation) break;
                         //login
                         //enter id, password
                         //search...match ->menu
@@ -264,26 +285,63 @@ public class Main {
                                         switch (opt3) {
                                             case 1://modify personal or travel detail
                                                 do {
-                                                    System.out.println("\n\n\tChoose The Type Of Details You Want To Modify:\n\n\t\t\t1.Personal Details\n\n\t\t\t");
-                                                    System.out.println(" 2. Travel Details\n\n\t\t\t3.Back\n\n\t\t\t");
+                                                    boolean modification=false;
+                                                    System.out.println("\n\n\tChoose The Type Of Details You Want To Modify:\n\n\t\t\t1.Personal Details");
+                                                    System.out.println("\n\t\t\t2.Travel Details\n\n\t\t\t3.Back");
 
                                                     opt4 = sc.nextInt();
                                                     switch (opt4) {
                                                         case 1://personal
+                                                            System.out.println("Modify personal details: ");
+                                                            System.out.println("1.Modify name  2.Change number of tickets to be book");
+                                                            int choice = sc.nextInt();
+                                                            if(choice==1) {
+                                                                System.out.println("Enter your new name.");
+                                                                c.client.name = sc.next();
+                                                            }
+                                                            else if(choice==2){
+                                                                    System.out.println("Enter no of tickets you want to book : ");
+                                                                c.members = sc.nextInt();
+                                                                }
+                                                            else System.out.println("Invalid option!!");
                                                             break;
-                                                        case 2:
+                                                    case 2://modify travel details
+                                                            System.out.println("Please enter your new travel locations.... ");
+                                                            System.out.println("Which continent do you want to visit?\n1.Europe\n2.Asia\n3.North America\n");
+                                                            int newContinent = sc.nextInt();
+                                                            while (true) {
+                                                                //countiChoice = ;
+                                                                // System.out.print("Enter: ");
+                                                                if (newContinent < 4 && newContinent > 0) {
+                                                                    break;
+                                                                }
+                                                                else{
+                                                                    System.out.println("Enter a valid option!!");
+                                                                    newContinent = sc.nextInt();
+                                                                }
+                                                            }
+                                                            c.acceptBucket(continent[newContinent - 1]);
+                                                            hash.create(c);
+                                                        System.out.println("Travel details are modified successfully!!");
+                                                        System.out.println("Please visit 'view travel details' to view your travel details !!");
+                                                        modification=true;
+                                                            break;
+
+                                                        case 3:
+                                                            System.out.println("Going back ...");
+                                                            break;
+                                                        default :
+                                                            System.out.println("Invalid Input!!");
                                                             break;
                                                     }
-                                                } while (opt4 != 3);
+                                                    if(modification)break;//....................error point!!
+                                                } while (opt4 != 3);//.................3 enter karun pan maage jaat nahiye!! :(
                                                 break;
                                             case 2://for deleting
-                                                break;
-                                            case 3://
                                                 break;
                                             default:
                                                 break;
                                         }
-
                                     } while (opt3 != 4);
                                     break;
                                 case 4:
@@ -292,7 +350,6 @@ public class Main {
                             }
                        // }while(edit!=4);
                     } while (opt2 != 4);
-
             }
         } while (opt != 3);
         /*switch (countiChoice) {

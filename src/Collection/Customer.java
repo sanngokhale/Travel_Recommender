@@ -47,7 +47,7 @@ public class Customer {
         client.age = input.nextInt();
         System.out.print("Do the members have any severe medical history??  1.Yes 2.No");
         client.medicalhist = input.nextInt();
-        System.out.println("\t\t\t\t\t1.Travelling with family       2.Business Trip");
+        System.out.println("1.Travelling with family       2.Business Trip");
         option = input.nextInt();
         do {
             if (option == 1) {
@@ -92,7 +92,7 @@ public class Customer {
         for (int i = 1; i < conti.allPlaces.length; i++) {
             System.out.println(i + ". " + conti.allPlaces[i].name);
         }
-        System.out.println("0.Go back to main menu");
+        System.out.println("0.Go back to main menu...");
         int choose = -1;
         int b = 1;
         choices = new ArrayList<>();
