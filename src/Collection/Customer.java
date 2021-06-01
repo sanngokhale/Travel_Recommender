@@ -268,8 +268,6 @@ public class Customer {
             if (counter >= tsp[i].length - 1) {
                 break;
             }
-
-
             if (j != i && !(visitedRouteList.contains(j))) {
                 if (tsp[i][j] < min) {
                     min = tsp[i][j];
