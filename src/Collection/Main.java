@@ -17,11 +17,12 @@ public class Main {
             flag = false;
         }
 
-        if(!flag)
+        if(!flag) {
             System.out.println(temp + " is not a number");
+            return check();
+        }
         else
             return  Integer.parseInt(temp);
-        return 0;
     }
 
 
