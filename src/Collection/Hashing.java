@@ -11,7 +11,7 @@ public class Hashing {
     }
 //changes
 
-    void create(Customer c) {
+/*    void create(Customer c) {
         if(count ==20){             //table full
             System.out.println("Table is full!!");
             return;
@@ -21,7 +21,7 @@ public class Hashing {
 
         while(customer[i]!=null && i<=20){
             if(i==20){
-                i=-1;
+                i=0;
             }
             i++;                                    //if index is occupied, move forward
         }
@@ -29,8 +29,27 @@ public class Hashing {
         customer[i]=new Customer();
         customer[i]=c;
         count++;                                        //increase count
+    }*/
+
+void create(Customer c){
+    int i=hash(c.id);                            //find index to store the customer
+    int temp = i;
+    if (customer[i] == null) {
+        customer[i] = new Customer();//assign vacant location to customer
+        customer[i] = c ;
+        count++;
+        return;
+    } else {
+        i = (i + 1) % 40;
+    }
+    while (customer[i] != null && i != temp) {
+        i = (i + 1) % 40;                                  //if index is occupied, move forward
     }
 
+    customer[i] = new Customer();//assign vacant location to customer
+    customer[i] = c ;       //assign vacant location to customer
+    count++;                                        //increase count
+}
 
     /*void display()
     {

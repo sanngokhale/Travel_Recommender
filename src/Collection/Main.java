@@ -150,14 +150,14 @@ public class Main {
         int details = 0;
         do {
             flag1 = false;
-            System.out.println("\n\t\t\tPlease select a kind of user:");
-            System.out.println("\n\n\t\t\t\t1.New User\n\n\t\t\t\t2.Existing User\n\n\t\t\t\t3.Exit");
+            System.out.println("\t\t\tPlease select a kind of user:");
+            System.out.println("\t\t\t\t1.New User\t\t\t2.Existing User\t\t\t\t3.Exit");
 
             opt = check();
             switch (opt) {
                 case 1: //new user
                     do {
-                        System.out.println("\n\n\n\t\t\t\tNEW USER\n");
+                        System.out.println("\n\t\t\t\tNEW USER\n");
 
 
                       //  System.out.println("Password is "+c.password);
@@ -178,8 +178,8 @@ public class Main {
                         //save the password, name, id(random)  --->customer che variables...
                         //message...registration is successful...
                         //this is ur id, keep it for future reference
-                        System.out.println("\n\n\t\t\tChoose the type of details you want to enter:");
-                        System.out.println("\n\n\t\t\t\t1.Personal Details\n\n\t\t\t\t2.Travel Details\n\n\t\t\t\t3.Back\n\n\t\t\t\t ");
+                        System.out.println("\t\t\tChoose the type of details you want to enter:");
+                        System.out.println("\t\t\t1.Personal Detailst\t\t\t2.Travel Details\t\t\t\t3.Backt\t\t\t ");
                         opt1 = check();
                         switch (opt1) {
                             case 1://personal details
@@ -226,7 +226,7 @@ public class Main {
                     //do {
                     boolean exitoption=false;
                     boolean password_validation=false;
-                    System.out.println("\n\n\t\t\t***** EXISTING USER *****");
+                    System.out.println("\n\t\t\t***** EXISTING USER *****");
                     System.out.println("Please enter your customer id : ");
                     int custId = check();
                     Customer temp = hash.search(custId);
@@ -268,7 +268,7 @@ public class Main {
                     //if id-yes....and password do not match...1)reenter 2)go to main menu & register as a new user, go back
                     do {
                         System.out.println("Please select the type of operation that you would like to perform:");
-                        System.out.println("\n\n\t\t\t1.View Personal Details\n\n\t\t\t2.View Travel Details\n\n\t\t\t3.Edit Details\n\n\t\t\t4.Back\n\n\t\t\t");
+                        System.out.println("\n\t\t\t1.View Personal Details\n\t\t\t2.View Travel Details\n\t\t\t3.Edit Details\n\t\t\t4.Back");
                         opt2 = check();
                         //opt2;
                         switch (opt2) {
@@ -284,16 +284,16 @@ public class Main {
                                 continue;
                             case 3:
                                 do {
-                                    System.out.println("\n\n\t\t\t***** EDIT INFORMATION *****");
-                                    System.out.println("\n\n\t\tPlease select among the editing options:\n\n");
-                                    System.out.println("\t\t\t\t1.Modify\n\n\t\t\t\t2.Back\n\n\t\t\t\t");
+                                    System.out.println("\n\t\t\t***** EDIT INFORMATION *****");
+                                    System.out.println("\n\t\tPlease select among the editing options:");
+                                    System.out.println("\t\t\t\t1.Modify\n\t\t\t\t2.Back\n\t\t\t\t");
                                     opt3 = check();
                                     switch (opt3) {
                                         case 1://modify personal or travel detail
                                             do {
                                                 boolean modification=false;
-                                                System.out.println("\n\n\tChoose The Type Of Details You Want To Modify:\n\n\t\t\t1.Personal Details");
-                                                System.out.println("\n\t\t\t2.Travel Details\n\n\t\t\t3.Back");
+                                                System.out.println("\n\tChoose The Type Of Details You Want To Modify:\n\t\t\t1.Personal Details");
+                                                System.out.println("\n\t\t\t2.Travel Details\n\t\t\t3.Back");
 
                                                 opt4 = check();
                                                 switch (opt4) {
